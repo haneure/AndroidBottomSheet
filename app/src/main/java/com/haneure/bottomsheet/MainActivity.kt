@@ -1,6 +1,7 @@
 package com.haneure.bottomsheet
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -17,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 
 sealed class Header {
     data class HeaderPlain(val titleText: String): Header()
@@ -57,7 +59,9 @@ class MainActivity : ComponentActivity() {
             ModalBottomSheet(
                 header = Header.HeaderPlain("Title here"),
                 content = Content.Center("Content here"),
-                footer = Footer.ButtonSingle.PositiveButton("Yes", {})
+                footer = Footer.ButtonSingle.PositiveButton("Yes", {
+                    Toast.makeText(this, "Yes Clicked", Toast.LENGTH_SHORT).show()
+                })
             )
         }
     }
